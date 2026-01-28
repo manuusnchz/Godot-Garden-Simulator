@@ -1,0 +1,78 @@
+[gd_scene load_steps=10 format=3 uid="uid://b2e6r3ierm88f"]
+
+[ext_resource type="Script" uid="uid://sh2o86vpevsp" path="res://cabeza_revolucion.gd" id="1_ideak"]
+[ext_resource type="Script" uid="uid://devgelr75x75o" path="res://npc.gd" id="1_xxcha"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v7lw1"]
+radius = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_ideak"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_v7lw1"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xxcha"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_kh24r"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ideak"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xxcha"]
+
+[node name="NPC" type="Node3D"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+script = ExtResource("1_xxcha")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_v7lw1")
+
+[node name="Torso" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1.5, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_ideak")
+
+[node name="HombroIzq" type="Node3D" parent="CharacterBody3D/Torso"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.48275828, 0.36927184, 0)
+
+[node name="BrazoIzq" type="MeshInstance3D" parent="CharacterBody3D/Torso/HombroIzq"]
+transform = Transform3D(0.2, 0, 0, 0, 0.65, 0, 0, 0, 0.2, -0.11971456, -0.20114586, 0)
+mesh = SubResource("BoxMesh_v7lw1")
+
+[node name="HombroDch" type="Node3D" parent="CharacterBody3D/Torso"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4918369, 0.36927184, 0)
+
+[node name="BrazoDch" type="MeshInstance3D" parent="CharacterBody3D/Torso/HombroDch"]
+transform = Transform3D(0.2, 0, 0, 0, 0.65, 0, 0, 0, 0.2, 0.11127782, -0.19769034, 0)
+mesh = SubResource("BoxMesh_xxcha")
+
+[node name="CaderaIzq" type="Node3D" parent="CharacterBody3D/Torso"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22727874, -0.50927943, 0)
+
+[node name="PiernaIzq" type="MeshInstance3D" parent="CharacterBody3D/Torso/CaderaIzq"]
+transform = Transform3D(0.2, 0, 0, 0, 0.40000004, 0, 0, 0, 0.2, 0, -0.19488698, 0)
+mesh = SubResource("BoxMesh_kh24r")
+
+[node name="CaderaDch" type="Node3D" parent="CharacterBody3D/Torso"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2410948, -0.50927943, 0)
+
+[node name="PiernaDch" type="MeshInstance3D" parent="CharacterBody3D/Torso/CaderaDch"]
+transform = Transform3D(0.2, 0, 0, 0, 0.40000004, 0, 0, 0, 0.2, 0, -0.19488698, 0)
+mesh = SubResource("BoxMesh_kh24r")
+
+[node name="CabezaRevolucion" type="MeshInstance3D" parent="CharacterBody3D/Torso"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4807055, 0)
+script = ExtResource("1_ideak")
+
+[node name="CosasCabeza" type="Node3D" parent="CharacterBody3D/Torso/CabezaRevolucion"]
+
+[node name="OjoIzq" type="MeshInstance3D" parent="CharacterBody3D/Torso/CabezaRevolucion/CosasCabeza"]
+transform = Transform3D(0.1, 0, 0, 0, -4.371139e-09, -0.10000001, 0, 0.1, -4.371139e-09, -0.21312869, 0.23171586, 0.307415)
+mesh = SubResource("CapsuleMesh_ideak")
+
+[node name="OjoDch" type="MeshInstance3D" parent="CharacterBody3D/Torso/CabezaRevolucion/CosasCabeza"]
+transform = Transform3D(0.1, 0, 0, 0, -4.371139e-09, -0.10000001, 0, 0.1, -4.371139e-09, 0.213, 0.23200005, 0.39349914)
+mesh = SubResource("CapsuleMesh_ideak")
+
+[node name="Boca" type="MeshInstance3D" parent="CharacterBody3D/Torso/CabezaRevolucion/CosasCabeza"]
+transform = Transform3D(-2.1855695e-09, -0.2, 0, 0.050000004, -8.742278e-09, 0, 0, 0, 0.05, 0, 0.142739, 0.5056995)
+mesh = SubResource("CapsuleMesh_xxcha")

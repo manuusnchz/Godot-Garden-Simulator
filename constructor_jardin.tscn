@@ -1,0 +1,204 @@
+[gd_scene load_steps=25 format=3 uid="uid://byysl0y7ralm0"]
+
+[ext_resource type="Script" uid="uid://dm6u13eq8k33j" path="res://Scripts/jardinero.gd" id="1_hjh6y"]
+[ext_resource type="PackedScene" uid="uid://cq3d2r74vkset" path="res://arbol_pino.tscn" id="2_ndhbs"]
+[ext_resource type="PackedScene" uid="uid://clq514j4yv687" path="res://rock_tall_d_2.tscn" id="3_vgt8j"]
+[ext_resource type="Texture2D" uid="uid://bh26ji8u20iui" path="res://texturas/handColour2048.jpg" id="5_awghq"]
+[ext_resource type="PackedScene" uid="uid://dyrqsbys5gr7u" path="res://molino.tscn" id="5_g30g3"]
+[ext_resource type="PackedScene" uid="uid://b2e6r3ierm88f" path="res://npc.tscn" id="5_iecbk"]
+[ext_resource type="Texture2D" uid="uid://nidawib62m4d" path="res://Shovel_BaseColor.png" id="6_uvicj"]
+[ext_resource type="ArrayMesh" uid="uid://buedcgbt4c862" path="res://Modelos/Medieval_Shovel_OBJ.obj" id="6_w3l5e"]
+[ext_resource type="ArrayMesh" uid="uid://daoqg4dkdw7k" path="res://Modelos/Femhand.obj" id="7_uvicj"]
+[ext_resource type="PackedScene" uid="uid://ca3p5l55kg2jw" path="res://valla_cuadrada.tscn" id="8_uvicj"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jjatt"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ndhbs"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vgt8j"]
+radius = 1.0
+height = 4.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hiqoe"]
+albedo_texture = ExtResource("5_awghq")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_vgt8j"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e5gaq"]
+albedo_texture = ExtResource("5_awghq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_awghq"]
+albedo_texture = ExtResource("6_uvicj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n54od"]
+albedo_texture = ExtResource("5_awghq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q7r4b"]
+albedo_texture = ExtResource("5_awghq")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g30g3"]
+
+[sub_resource type="Sky" id="Sky_w3l5e"]
+sky_material = SubResource("ProceduralSkyMaterial_g30g3")
+
+[sub_resource type="Environment" id="Environment_uvicj"]
+background_mode = 2
+sky = SubResource("Sky_w3l5e")
+ambient_light_sky_contribution = 0.3
+
+[sub_resource type="LabelSettings" id="LabelSettings_w3l5e"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_g30g3"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="Constructor_Jardin" type="Node3D"]
+
+[node name="Objetos" type="Node3D" parent="."]
+
+[node name="Suelo" type="MeshInstance3D" parent="Objetos"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+mesh = SubResource("PlaneMesh_jjatt")
+
+[node name="Suelo" type="StaticBody3D" parent="Objetos/Suelo"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objetos/Suelo/Suelo"]
+shape = SubResource("ConcavePolygonShape3D_ndhbs")
+
+[node name="Jardinero" type="CharacterBody3D" parent="Objetos" node_paths=PackedStringArray("cartel_alerta")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+script = ExtResource("1_hjh6y")
+escena_arbol = ExtResource("2_ndhbs")
+escena_roca = ExtResource("3_vgt8j")
+escena_molino = ExtResource("5_g30g3")
+cartel_alerta = NodePath("../../CanvasLayer2/Label")
+objeto_a_construir = ExtResource("2_ndhbs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objetos/Jardinero"]
+shape = SubResource("CapsuleShape3D_vgt8j")
+
+[node name="Ojos" type="Camera3D" parent="Objetos/Jardinero"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+
+[node name="RayCast3D" type="RayCast3D" parent="Objetos/Jardinero/Ojos"]
+target_position = Vector3(0, -1, -20)
+
+[node name="Brazos" type="Node3D" parent="Objetos/Jardinero/Ojos"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6915922)
+
+[node name="BrazoDerecho" type="MeshInstance3D" parent="Objetos/Jardinero/Ojos/Brazos"]
+transform = Transform3D(0.5, 0, 0, 0, -0.3068584, 0.47587758, 0, -0.95175517, -0.1534292, 0.99965334, -0.44627762, -1.2283382)
+material_override = SubResource("StandardMaterial3D_hiqoe")
+mesh = SubResource("CapsuleMesh_vgt8j")
+
+[node name="BrazoIzquierdo" type="MeshInstance3D" parent="Objetos/Jardinero/Ojos/Brazos"]
+transform = Transform3D(0.5, 0, 0, 0, -0.3068584, 0.47587758, 0, -0.95175517, -0.1534292, -1, -0.446, -1.228)
+material_override = SubResource("StandardMaterial3D_e5gaq")
+mesh = SubResource("CapsuleMesh_vgt8j")
+
+[node name="Pala" type="MeshInstance3D" parent="Objetos/Jardinero/Ojos/Brazos"]
+unique_name_in_owner = true
+transform = Transform3D(-0.023868574, -0.030241903, 0.031870343, 0.029684585, 0.015638504, 0.03707104, -0.032390058, 0.03661782, 0.0104889795, 0.49199808, -1.8200815, -4.5692825)
+visible = false
+material_override = SubResource("StandardMaterial3D_awghq")
+mesh = ExtResource("6_w3l5e")
+skeleton = NodePath("../../../../..")
+
+[node name="Mano1" type="MeshInstance3D" parent="Objetos/Jardinero/Ojos/Brazos"]
+transform = Transform3D(-0.5736471, 0.16394876, -0.0636382, 0.17585966, 0.532841, -0.2124942, -0.001548526, -0.22181344, -0.5574912, -1.0193832, -0.82892776, -2.3986068)
+material_override = SubResource("StandardMaterial3D_n54od")
+mesh = ExtResource("7_uvicj")
+skeleton = NodePath("../..")
+
+[node name="Mano2" type="MeshInstance3D" parent="Objetos/Jardinero/Ojos/Brazos"]
+transform = Transform3D(0.5987506, -0.035359725, 0.015731985, 0.038670465, 0.5563708, -0.22126026, 0.0015485367, -0.22181343, -0.5574912, 0.9493339, -0.82892776, -2.3986068)
+material_override = SubResource("StandardMaterial3D_q7r4b")
+mesh = ExtResource("7_uvicj")
+skeleton = NodePath("../..")
+
+[node name="RayCastMuro" type="RayCast3D" parent="Objetos/Jardinero/Ojos"]
+target_position = Vector3(0, 0, -0.8)
+
+[node name="HerramientaBorrado" type="MeshInstance3D" parent="Objetos/Jardinero/Ojos"]
+
+[node name="VallaCuadrada" parent="Objetos" instance=ExtResource("8_uvicj")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="BotonArbol" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+text = "Plantar Arbol"
+
+[node name="BotonRoca" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+text = "Plantar Roca"
+
+[node name="BotonMolino" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+text = "Construir Molino
+"
+
+[node name="BotonBorrar" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+text = "BORRAR
+"
+
+[node name="NPC1" parent="." instance=ExtResource("5_iecbk")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -13.667286, 2.662136, -0.6787643)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_uvicj")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="MensajeInformativo" type="Label" parent="CanvasLayer2"]
+offset_left = 1.0
+offset_top = 33.0
+offset_right = 656.0
+offset_bottom = 56.0
+text = "Usa las flechas para moverte por el mapa, y el click para construir/borrar los objetos."
+label_settings = SubResource("LabelSettings_w3l5e")
+
+[node name="TimerMensaje" type="Timer" parent="CanvasLayer2"]
+unique_name_in_owner = true
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[node name="MensajeMolino" type="Label" parent="CanvasLayer2"]
+unique_name_in_owner = true
+visible = false
+offset_left = 256.0
+offset_top = 246.0
+offset_right = 881.0
+offset_bottom = 269.0
+text = "\"¡Molino construido! Pulsa 1 para activar/desactivar la cabeza y 2 para las aspas\"."
+label_settings = SubResource("LabelSettings_g30g3")
+
+[node name="Label" type="Label" parent="CanvasLayer2"]
+visible = false
+offset_left = 410.0
+offset_top = 234.0
+offset_right = 830.0
+offset_bottom = 292.0
+text = "TE HAS ELECTROCUTADO CON LA VALLA!!!"
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.766022, 0.64281434, 0, -0.64281434, 0.766022, 0, 29.696709, 68.991455)
+
+[connection signal="body_entered" from="Objetos/VallaCuadrada/Area3D" to="Objetos/Jardinero" method="_on_area_3d_body_entered"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/BotonArbol" to="Objetos/Jardinero" method="_on_boton_arbol_pressed"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/BotonRoca" to="Objetos/Jardinero" method="_on_boton_roca_pressed"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/BotonMolino" to="Objetos/Jardinero" method="_on_boton_molino_pressed"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/BotonBorrar" to="Objetos/Jardinero" method="_on_boton_borrar_pressed"]
+[connection signal="timeout" from="CanvasLayer2/TimerMensaje" to="Objetos/Jardinero" method="_on_timer_mensaje_timeout"]
+
+[editable path="Objetos/VallaCuadrada"]

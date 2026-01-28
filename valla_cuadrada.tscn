@@ -1,0 +1,94 @@
+[gd_scene load_steps=9 format=3 uid="uid://ca3p5l55kg2jw"]
+
+[ext_resource type="Texture2D" uid="uid://dowbt0lx5fvb2" path="res://texturas/fondo-de-suelo-de-textura-de-madera-marron.jpg" id="1_vw4ao"]
+[ext_resource type="Texture2D" uid="uid://ltmdi3fq3sfg" path="res://texturas/normalmadera.png" id="2_sqfgp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sgumg"]
+albedo_texture = ExtResource("1_vw4ao")
+normal_enabled = true
+normal_texture = ExtResource("2_sqfgp")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_sarq8"]
+size = Vector3(10, 1, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u6217"]
+size = Vector3(10, 1, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vaf07"]
+albedo_texture = ExtResource("1_vw4ao")
+normal_enabled = true
+normal_texture = ExtResource("2_sqfgp")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y71qs"]
+albedo_texture = ExtResource("1_vw4ao")
+normal_enabled = true
+normal_texture = ExtResource("2_sqfgp")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lcsai"]
+albedo_texture = ExtResource("1_vw4ao")
+normal_enabled = true
+normal_texture = ExtResource("2_sqfgp")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[node name="VallaCuadrada" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5, 0, 0)
+material_override = SubResource("StandardMaterial3D_sgumg")
+mesh = SubResource("BoxMesh_sarq8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5, 0, 0)
+shape = SubResource("BoxShape3D_u6217")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+material_override = SubResource("StandardMaterial3D_vaf07")
+mesh = SubResource("BoxMesh_sarq8")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+shape = SubResource("BoxShape3D_u6217")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5, 0, 0)
+material_override = SubResource("StandardMaterial3D_y71qs")
+mesh = SubResource("BoxMesh_sarq8")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5, 0, 0)
+shape = SubResource("BoxShape3D_u6217")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+material_override = SubResource("StandardMaterial3D_lcsai")
+mesh = SubResource("BoxMesh_sarq8")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+shape = SubResource("BoxShape3D_u6217")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D21" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5, 0, 0)
+shape = SubResource("BoxShape3D_u6217")
+
+[node name="CollisionShape3D22" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+shape = SubResource("BoxShape3D_u6217")
+
+[node name="CollisionShape3D23" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5, 0, 0)
+shape = SubResource("BoxShape3D_u6217")
+
+[node name="CollisionShape3D24" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+shape = SubResource("BoxShape3D_u6217")

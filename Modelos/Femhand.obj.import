@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://daoqg4dkdw7k"
+path="res://.godot/imported/Femhand.obj-1d26e794c1ed09ef616b5026bdab06c2.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Femhand.obj-1d26e794c1ed09ef616b5026bdab06c2.mesh"]
+
+source_file="res://Modelos/Femhand.obj"
+dest_files=["res://.godot/imported/Femhand.obj-1d26e794c1ed09ef616b5026bdab06c2.mesh", "res://.godot/imported/Femhand.obj-1d26e794c1ed09ef616b5026bdab06c2.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
