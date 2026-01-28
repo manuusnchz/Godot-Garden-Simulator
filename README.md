@@ -15,7 +15,7 @@
 ---
 
 ## 📋 Descripción del Proyecto
-Este proyecto es una aplicación interactiva en 3D desarrollada como parte de la asignatura de **Ingeniería Gráfica** en la **Universidad de Granada (UGR)**.
+Este proyecto es una aplicación interactiva en 3D desarrollada con el motor Godot.
 
 El objetivo principal es la implementación de un **motor de construcción en tiempo real** donde el usuario (en primera persona) puede modificar el entorno, gestionar entidades jerárquicas y experimentar con físicas de colisión avanzadas.
 
